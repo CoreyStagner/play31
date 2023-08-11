@@ -5,8 +5,6 @@ import app from "./app";
 
 const { EXPRESS_PORT, MONGO_CONNECTION_STRING } = env;
 
-console.log(process.env)
-
 const portToUse = process.env.PORT || EXPRESS_PORT;
 
 // Check Express Configurations
