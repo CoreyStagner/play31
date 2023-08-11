@@ -5,8 +5,12 @@ import app from "./app";
 
 const { EXPRESS_PORT, MONGO_CONNECTION_STRING } = env;
 
+console.log(process.env)
+
+const portToUse = process.env.PORT || EXPRESS_PORT;
+
 // Check Express Configurations
-if (!EXPRESS_PORT || !app) {
+if (!portToUse || !app) {
   console.error("ERROR: Missing Express Configurations Values")
 } else {
   // Check Mongo and Mongoose configurations
@@ -17,8 +21,8 @@ if (!EXPRESS_PORT || !app) {
   // Connect to Database
   mongoose.connect(MONGO_CONNECTION_STRING).then(() => {
     console.log("Connection was successful to database");
-    app.listen(EXPRESS_PORT, () => {
-      console.log(`Server is running on port: ${EXPRESS_PORT}`);
+    app.listen(portToUse, () => {
+      console.log(`Server is running on port: ${portToUse}`);
     });
   }).catch((err) => {
     console.error(`ERROR: Unable to connect to database ${err}`)
