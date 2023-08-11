@@ -35,7 +35,9 @@ app.use("/api/games",  gamesRouter);
 
 // Default Catch All
 app.use((req, res, next) => {
-  next(createHttpError(404, "Endpoint not found"));
+  console.log(req.path)
+  // console.log(res)
+  next(createHttpError(404, `Endpoint not found`));
 });
 
 // Error Handler
