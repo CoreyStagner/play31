@@ -1,6 +1,6 @@
-import { Button, Navbar } from "react-bootstrap";
-import { User } from "../../models/user";
-import * as GamesAPI from "../../network/games_api";
+import { Button } from "react-bootstrap";
+// import { User } from "../../models/user";
+// import * as GamesAPI from "../../network/games_api";
 
 interface LoggedOutUserProps {
     onSignUpClicked: () => void;
