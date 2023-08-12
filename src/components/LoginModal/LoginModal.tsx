@@ -7,6 +7,7 @@ import TextInputField from "../Form/TextInputField";
 import styleUtils from "../../styles/utils.module.css";
 import { useState } from "react";
 import { UnauthorizedError } from "../../errorMessages/http";
+import bcrypt from "bcryptjs-react";
 
 interface LoginModalProps {
   onDismiss: () => void;
@@ -25,7 +26,8 @@ const LoginModal = ({ onDismiss, onSuccess }: LoginModalProps) => {
 
   async function onSubmit(credentials: LogInCredentials) {
     try {
-      const user = await GamesAPI.logIn(credentials);
+      const passwordHashed = await bcrypt.hash(credentials.password!, 10);
+      const user = await GamesAPI.logIn({username: credentials.username, password: passwordHashed});
       onSuccess(user);
     } catch (error) {
       if (error instanceof UnauthorizedError) {

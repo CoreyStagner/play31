@@ -4,7 +4,7 @@ import { User } from "../models/user";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
   const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
-  const response = await fetch(input, init);
+  const response = await fetch(fetchURL, init);
   if (response.ok) {
     return response;
   } else {
@@ -83,7 +83,7 @@ export async function signUp(credentials: SignUpCredentials): Promise<User> {
 
 export interface LogInCredentials {
   username: string,
-  email: string,
+  email?: string,
   password?: string,
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "play31",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000",
@@ -11,8 +11,8 @@
     "@types/node": "^16.18.40",
     "@types/react": "^18.2.19",
     "@types/react-dom": "^18.2.7",
+    "bcryptjs-react": "^2.4.6",
     "bootstrap": "^5.3.1",
-    "concurrently": "^8.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
@@ -24,14 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "develop": "concurrently --kill-others-on-fail \"npm run start --prefix backend\" \"npm run start --prefix client\"",
-    "start": "npm run start --prefix client",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "install-backend": "cd backend && npm install",
-    "heroku-postbuild": "npm run install-client && npm run install-backend",
-    "client": "cd client && react-scripts start",
-    "server": "cd backend && node ./dist/server.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -52,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2"
   }
 }
