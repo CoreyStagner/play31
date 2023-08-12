@@ -25,7 +25,7 @@
   },
   "scripts": {
     "develop": "concurrently --kill-others-on-fail \"npm run start --prefix backend\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run start --prefix backend\" \"npm run start --prefix client\"",
+    "start": "npm run start --prefix client",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
     "install-backend": "cd backend && npm install",
