@@ -3,6 +3,7 @@ import { Game } from "../models/game";
 import { User } from "../models/user";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
+  const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
   const response = await fetch(input, init);
   if (response.ok) {
     return response;
