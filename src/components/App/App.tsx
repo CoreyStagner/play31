@@ -9,6 +9,8 @@ import { Container } from "react-bootstrap";
 import GamesPage from "../../pages/GamesPage";
 import ErrorPage from "../../pages/ErrorPage";
 import styles from "./App.module.css";
+import RulesPage from "../../pages/RulesPage";
+import PlayersPage from "../../pages/PlayersPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -45,6 +47,14 @@ function App() {
             <Route
               path="/games"
               element={<GamesPage loggedInUser={loggedInUser} />}
+            />
+            <Route
+              path="/players"
+              element={<PlayersPage loggedInUser={loggedInUser} />}
+            />
+            <Route
+              path="/rules"
+              element={<RulesPage />}
             />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>

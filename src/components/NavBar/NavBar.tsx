@@ -24,8 +24,11 @@ const NavBar = ({ loggedInUser, onSignUpClicked, onLoginClicked, onLogoutSuccess
                         <Nav.Link as={Link} to="/games" >
                             Games
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/games" >
+                        <Nav.Link as={Link} to="/players" >
                             Players
+                        </Nav.Link>
+                        <Nav.Link as={Link} to="/rules" >
+                            Rules
                         </Nav.Link>
                     </Nav>
                     <Nav className="ms-auto">
