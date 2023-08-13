@@ -17,15 +17,15 @@ const User = ( { user, className, index,
     // onDeleteUserClick
     } : UserProps) => {
     const { username,
-    // firstName,
-    // lastName,
+    firstName,
+    lastName,
     email } = user;
 
     return (
         <tr key={index}>
             <td>{index}</td>
-            <td></td>
-            <td></td>
+            <td>{firstName}</td>
+            <td>{lastName}</td>
             <td>{username}</td>
             <td>{email}</td>
         </tr>

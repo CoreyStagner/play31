@@ -14,8 +14,7 @@ interface SignUpModalProps {
 }
 
 const SignUpModal = ({ onDismiss, onSuccess }: SignUpModalProps) => {
-
-  const [errorText, setErrorText] = useState<string|null>(null)
+  const [errorText, setErrorText] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -23,16 +22,20 @@ const SignUpModal = ({ onDismiss, onSuccess }: SignUpModalProps) => {
   } = useForm<SignUpCredentials>();
 
   async function onSubmit(credentials: SignUpCredentials) {
-    try {
-      const newUser = await GamesAPI.signUp(credentials);
-      onSuccess(newUser);
-    } catch (error) {
-      if (error instanceof ConflictError) {
-        setErrorText(error.message);
-      } else {
-        alert(error);
+    if (credentials.password !== credentials.confirmPassword) {
+      setErrorText("Password must match!");
+    } else {
+      try {
+        const newUser = await GamesAPI.signUp(credentials);
+        onSuccess(newUser);
+      } catch (error) {
+        if (error instanceof ConflictError) {
+          setErrorText(error.message);
+        } else {
+          alert(error);
+        }
+        console.error(error);
       }
-      console.error(error);
     }
   }
 
@@ -43,10 +46,7 @@ const SignUpModal = ({ onDismiss, onSuccess }: SignUpModalProps) => {
       </Modal.Header>
 
       <Modal.Body>
-        {errorText &&
-        <Alert variant="danger">
-          {errorText}
-        </Alert>}
+        {errorText && <Alert variant="danger">{errorText}</Alert>}
         <Form onSubmit={handleSubmit(onSubmit)}>
           <TextInputField
             name="username"
@@ -62,20 +62,50 @@ const SignUpModal = ({ onDismiss, onSuccess }: SignUpModalProps) => {
             name="email"
             label="Email"
             type="email"
-            placeholder={null}
+            placeholder="Enter Email Address"
             register={register}
             registerOptions={{ required: true }}
             error={errors.email}
           />
 
           <TextInputField
+            name="firstName"
+            label="First Name"
+            type="firstName"
+            placeholder="Enter your First Name"
+            register={register}
+            registerOptions={{ required: true }}
+            error={errors.firstName}
+          />
+
+          <TextInputField
+            name="lastName"
+            label="Last Name"
+            type="lastName"
+            placeholder="Enter your Last Name"
+            register={register}
+            registerOptions={{ required: true }}
+            error={errors.lastName}
+          />
+
+          <TextInputField
             name="password"
             label="Password"
             type="password"
-            placeholder={null}
+            placeholder="Enter your Password"
             register={register}
             registerOptions={{ required: true }}
             error={errors.password}
+          />
+
+          <TextInputField
+            name="confirmPassword"
+            label="Re-enter Password"
+            type="confirmPassword"
+            placeholder="Confirm your Password"
+            register={register}
+            registerOptions={{ required: true }}
+            error={errors.confirmPassword}
           />
 
           <Button

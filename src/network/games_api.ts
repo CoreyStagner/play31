@@ -3,7 +3,8 @@ import { Game } from "../models/game";
 import { User } from "../models/user";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
-  const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
+  // const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
+  const fetchURL = `http://localhost:5000${input}`
   const response = await fetch(fetchURL, init);
   if (response.ok) {
     return response;
@@ -67,10 +68,15 @@ export async function deleteGame(gameId: string) {
 export interface SignUpCredentials {
   username: string,
   email: string,
+  firstName: string,
+  lastName: string,
   password: string,
+  confirmPassword: string,
 }
 
 export async function signUp(credentials: SignUpCredentials): Promise<User> {
+  console.log(credentials)
+  debugger;
   const response = await fetchData("/api/users/signup", {
     method: "POST",
     headers: {
