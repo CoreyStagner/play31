@@ -3,8 +3,8 @@ import { Game } from "../models/game";
 import { User } from "../models/user";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
-  const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
-  // const fetchURL = `http://localhost:5000${input}`
+  // const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
+  const fetchURL = `http://localhost:5000${input}`
   const response = await fetch(fetchURL, init);
   if (response.ok) {
     return response;
@@ -31,7 +31,7 @@ export async function fetchGames(): Promise<Game[]> {
   return response.json();
 }
 
-export async function fetchGame(gameId: string): Promise<Game[]> {
+export async function fetchGame(gameId: string): Promise<Game> {
   console.log(`[GET] [/network/games_api.ts] [fetchGames()] [/api/games/${gameId}]`);
   const response = await fetchData(`/api/games/${gameId}`, { method: "GET" });
   console.log(`[GET] [/network/games_api.ts] [fetchGames()] [response: ${JSON.stringify(response)}]`);
