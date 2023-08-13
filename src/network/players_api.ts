@@ -3,8 +3,8 @@ import { ConflictError, UnauthorizedError } from "../errorMessages/http";
 import { User } from "../models/user";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
-  // const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
-  const fetchURL = `http://localhost:5000${input}`
+  const fetchURL = `https://play31server-a26fc9e3cea9.herokuapp.com${input}`
+  // const fetchURL = `http://localhost:5000${input}`
   const response = await fetch(fetchURL, init);
   if (response.ok) {
     return response;
