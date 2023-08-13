@@ -11,6 +11,7 @@ import ErrorPage from "../../pages/ErrorPage";
 import styles from "./App.module.css";
 import RulesPage from "../../pages/RulesPage";
 import PlayersPage from "../../pages/PlayersPage";
+import GamePage from "../../pages/GamePage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -43,6 +44,10 @@ function App() {
             <Route
               path="/"
               element={<GamesPage loggedInUser={loggedInUser} />}
+            />
+            <Route
+              path="/game/:id"
+              element={<GamePage loggedInUser={loggedInUser} />}
             />
             <Route
               path="/games"

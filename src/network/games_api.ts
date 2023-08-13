@@ -31,6 +31,13 @@ export async function fetchGames(): Promise<Game[]> {
   return response.json();
 }
 
+export async function fetchGame(gameId: string): Promise<Game[]> {
+  console.log(`[GET] [/network/games_api.ts] [fetchGames()] [/api/games/${gameId}]`);
+  const response = await fetchData(`/api/games/${gameId}`, { method: "GET" });
+  console.log(`[GET] [/network/games_api.ts] [fetchGames()] [response: ${JSON.stringify(response)}]`);
+  return response.json();
+}
+
 export interface GameInput {
   title: string;
   location?: string;

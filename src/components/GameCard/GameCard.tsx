@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Game.module.css";
+import styles from "./GameCard.module.css";
 import { Card } from "react-bootstrap";
 import { Game as GameModel } from "../../models/game";
 import { formatDate } from "../../utils/formatDate";

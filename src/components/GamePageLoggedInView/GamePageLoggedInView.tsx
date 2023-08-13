@@ -4,13 +4,15 @@ import { FaPlus } from "react-icons/fa";
 import styles from "../../styles/pages/GamesPage.module.css";
 import styleUtils from "../../styles/utils.module.css";
 import AddEditGameDialog from "../AddEditGameDialog/AddEditGameDialog";
-import Game from "../Game/Game";
+import GameCard from "../GameCard/GameCard";
 import { Game as GameModel } from "./../../models/game";
 import * as GamesAPI from "./../../network/games_api";
+import { useNavigate } from "react-router-dom";
 
 
 const GamePageLoggedInView = () => {
 
+    const navigate = useNavigate();
     const [games, setGames] = useState<GameModel[]>([]);
     const [showAddEditGameDialog, setShowAddEditGameDialog] = useState(false);
     const [gameToEdit, setGameToEdit] = useState<GameModel | null>(null);
@@ -42,15 +44,20 @@ const GamePageLoggedInView = () => {
           console.error("Error Deleting Game:", error);
         }
       }
+      
+      function handleNavigation(url: string) {
+        navigate(`${url}`)
+      }
     const gamesGrid = (
         <Row xs={1} md={2} xl={3} className={`${styles.gameGrid} g-4`}>
           {(games || []).map((game, i) => (
             <Col key={i}>
-              <Game
+              <GameCard
                 game={game}
                 className={styles.game}
+                onGameEditClick={setGameToEdit}
                 onDeleteGameClick={deleteGameHandler}
-                onGameClick={setGameToEdit}
+                onGameClick={() => handleNavigation(`/game/${game._id}`)}
               />
             </Col>
           ))}
